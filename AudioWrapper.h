@@ -32,6 +32,10 @@ public:
   AudioWrapper (AudioWrapper const&) = delete;
   unsigned int generateID(std::string name);
   void operator = (AudioWrapper const&)  =delete;
+
+    std::array<std::array<double,256>*, 2 >& getWritePointers();
+
+
 private:
 
 
@@ -42,9 +46,9 @@ private:
     int SampleRate;
     int nBuffers;
     int Device;
-    double Data[2];
     std::array<double,256>LeftChannel;
     std::array<double,256>RightChannel;
+    std::array<std::array<double,256>*, 2 >Channels;
     unsigned int BufferFrames = 256;
     std::vector<Song>Songs;
     std::vector<SoundEffect>Sfx;
