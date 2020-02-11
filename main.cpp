@@ -1,44 +1,37 @@
 
-#include <raylib.h>
-#include <complex>
-#include "AudioWrapper.h"
+#include "Core/Graphics/graphics.h"
+#include "Core/Graphics/TextureLoading.h"
+#include "Core/Input.h"
+#include "Core/settings.h"
 
 
-AudioWrapper& SoundDevice = AudioWrapper::getWrapper();
-
+const int ScreenH = 768 *2;
+const int ScreenW = 1024 *2;
+graphicsSubSystem m_graphics(ScreenW,ScreenH);
+TextureManager &m_textures = TextureManager::getManager("assets/Images");
 int main()
 {
-    const int height = 1024;
-    const int width = 768;
-    double currentAngle =0;
-    double cyclesPerSample = 0.00916666666;
-    double angleDelta = cyclesPerSample * 2.0 *3.14159265358979323846264338327950288419716939937510;
-    //creating window and setting fps cap
 
-    InitWindow(height,width,"test");
-  //  SetTargetFPS();
-    std::array<std::array<double,256>*, 2 > WritePointers = SoundDevice.getWritePointers();
+    DebugLayer settings;
+    SimpleImageLayer DrawingLayer;
+    Drawable Purin = m_textures.createDrawable("Purin.png");
+
+    Purin.DestRect = {50,50,100,100};
+    DrawingLayer.LayerImages.push_back(Purin);
+
+    m_graphics.addLayertoRender(&DrawingLayer);
+    m_graphics.addLayertoRender(&settings);
+
+
+    //AudioCallback.join();
     while(!WindowShouldClose())
     {
-
-        for(int i = 0; i < 256; i++)
-        {
-            double Val = 0;
-            Val = std::sin(currentAngle) * 0.5;
-            WritePointers.at(0)->at(i) = Val;
-            WritePointers.at(1)->at(i) = Val;
-            currentAngle += angleDelta;
-
-
-        }
+        settings.updateLayer((void*) &m_graphics);
+        DrawingLayer.updateLayer(NULL);
+        m_graphics.RenderLoop();
 
 
 
-        //main drawing loop
-       BeginDrawing();
-
-
-        EndDrawing();
     }
 
 
@@ -46,3 +39,4 @@ int main()
 
     CloseWindow();
 }
+
