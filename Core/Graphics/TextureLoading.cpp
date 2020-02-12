@@ -1,5 +1,5 @@
 #include "TextureLoading.h"
-#include <dirent.h>
+
 
 //texture management singleton implimentation! 
 TextureManager::TextureManager(std::string path)

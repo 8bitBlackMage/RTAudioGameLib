@@ -25,8 +25,7 @@ private:
 
     int m_ScreenH;
     int m_ScreenW ;
-    const int m_Renderheight = 240;
-    const int m_Renderwidth = 320;
+
 
 
 

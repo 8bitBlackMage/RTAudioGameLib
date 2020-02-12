@@ -6,10 +6,8 @@
 #define IMPLIMENTINGGAMEAUDIOPROJECT_RAYLIB_INPUT_H
 
 #include <raylib.h>
-#include <array>
-enum GameKeys{
-    Up,Down,Left,Right,Cross,Triangle,Square,Circle,total
-};
+#include <vector>
+
 
 
 
@@ -24,10 +22,12 @@ Input (Input const&) = delete;
 void operator = (Input const&) = delete;
 private:
     Input();
-    std::array<bool,GameKeys::total>Keys;
+    std::vector<bool>Keys;
+    std::vector<bool>Buttons;
     void HandleGamePadInput();
     void HandleKeyboardInput();
-
+    int totalButtons;
+    int totalKeys;
 
 
 };

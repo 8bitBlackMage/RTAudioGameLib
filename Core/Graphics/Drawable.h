@@ -26,4 +26,18 @@ struct Drawable
 
 };
 
+
+struct UIDrawable
+{
+    UIDrawable();
+    UIDrawable(float x, float y, float width, float height, const char * text){
+        Background = {x,y,width,height};
+        TextToDraw = text;
+    }
+    Rectangle Background{0,0,0,0};
+    Color BackgroundColour = {0, 73, 255,255};
+    float HighlightThickness = 5;
+    Color HighlightColor = {219, 219, 255,255};
+    const char * TextToDraw;
+};
 #endif //IMPLIMENTINGGAMEAUDIOPROJECT_RAYLIB_DRAWABLE_H

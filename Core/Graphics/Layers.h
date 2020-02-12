@@ -30,10 +30,17 @@ public:
 
     void updateLayer(void * data) override;
     RenderTexture2D LayerData;
-    std::vector<Drawable> LayerImages;
+    std::vector<Drawable*> LayerImages;
 };
 
-
+class UserInterfaceLayer: public Layer{
+public:
+    UserInterfaceLayer();
+    RenderTexture2D getLayer() override;
+    RenderTexture2D LayerData;
+    void updateLayer(void * data) override;
+    std::vector<UIDrawable*> UIElements;
+};
 
 
 

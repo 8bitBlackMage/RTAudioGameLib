@@ -7,7 +7,7 @@
 
 //settings collection file,
 #include <string>
-#include "../Libraries/tinyxml2/tinyxml2.h"
+#include "../../Libraries/tinyxml2/tinyxml2.h"
 class settings{
 public:
 

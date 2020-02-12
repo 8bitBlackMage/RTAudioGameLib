@@ -3,7 +3,7 @@
 //
 
 #include "graphics.h"
-
+#include "../Globals.h"
 
 graphicsSubSystem::graphicsSubSystem(int ScreenW, int ScreenH): m_ScreenW(ScreenW), m_ScreenH(ScreenH)
 {
@@ -49,7 +49,7 @@ void graphicsSubSystem::RenderLoop() {
 }
 DebugLayer::DebugLayer()
 {
-    LayerData = LoadRenderTexture(320 ,240);
+    LayerData = LoadRenderTexture(GlobalVARS::RENDERW ,GlobalVARS::RENDERH);
 }
 
 
