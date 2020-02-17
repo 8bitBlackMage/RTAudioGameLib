@@ -21,12 +21,12 @@ graphicsSubSystem::graphicsSubSystem(int ScreenW, int ScreenH): m_ScreenW(Screen
 
 int graphicsSubSystem::getNumLayers() {
 
-    return Layers.size();
+    return m_Layers.size();
 
 }
 
 void graphicsSubSystem::addLayertoRender(Layer* layer_to_add) {
-    Layers.emplace_back(layer_to_add);
+    m_Layers.emplace_back(layer_to_add);
 }
 
 
@@ -34,7 +34,7 @@ void graphicsSubSystem::RenderLoop() {
 
     BeginDrawing();
     ClearBackground(PINK);
-    for(auto & RenderLayer : Layers)
+    for(auto & RenderLayer : m_Layers)
     {
     RenderTexture2D  Texture = RenderLayer->getLayer();
     DrawTexturePro(Texture.texture,
@@ -49,7 +49,7 @@ void graphicsSubSystem::RenderLoop() {
 }
 DebugLayer::DebugLayer()
 {
-    LayerData = LoadRenderTexture(GlobalVARS::RENDERW ,GlobalVARS::RENDERH);
+    m_LayerData = LoadRenderTexture(GlobalVARS::RENDERW , GlobalVARS::RENDERH);
 }
 
 
@@ -57,21 +57,21 @@ DebugLayer::DebugLayer()
 RenderTexture2D DebugLayer::getLayer()
 {
 
-BeginTextureMode(LayerData);
+BeginTextureMode(m_LayerData);
 ClearBackground(BLANK);
 DrawFPS(1,1);
-DrawText(DebugLayernum.c_str(),1,20,10,GREEN);
+DrawText(m_DebugLayernum.c_str(), 1, 20, 10, GREEN);
 
 EndTextureMode();
 
-return LayerData;
+return m_LayerData;
 }
 
 
 void DebugLayer::updateLayer(void *data)
 {
-   SubsystemPointer = (graphicsSubSystem*) data;
-   DebugLayernum = "number of Layers: "+ std::to_string(SubsystemPointer->getNumLayers()) ;
+    m_SubsystemPointer = (graphicsSubSystem*) data;
+    m_DebugLayernum = "number of Layers: " + std::to_string(m_SubsystemPointer->getNumLayers()) ;
 
 
 

@@ -14,6 +14,7 @@ add_executable(ImplimentingGameAudioProject_Raylib main.cpp
         Core/Graphics/TextureLoading.cpp
         Core/Graphics/Layers.cpp
         Core/System/Input.cpp
+        Core/System/EventManager.cpp
         Libraries/tinyxml2/tinyxml2.cpp)
 
 target_link_libraries(ImplimentingGameAudioProject_Raylib -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 )

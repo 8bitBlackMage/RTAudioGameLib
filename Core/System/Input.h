@@ -22,12 +22,12 @@ Input (Input const&) = delete;
 void operator = (Input const&) = delete;
 private:
     Input();
-    std::vector<bool>Keys;
-    std::vector<bool>Buttons;
+    std::vector<bool>m_Keys;
+    std::vector<bool>m_Buttons;
     void HandleGamePadInput();
     void HandleKeyboardInput();
-    int totalButtons;
-    int totalKeys;
+    int m_totalButtons;
+    int m_totalKeys;
 
 
 };

@@ -18,9 +18,15 @@ TextureManager(TextureManager const&) = delete;
 void operator = (TextureManager const&) = delete;
 Drawable createDrawable(std::string filename);
 
+
+//runs commands to load into VRam, takes string for file name to load, has checks in place to prevent double loading
 void loadFromFile(std::string filename); 
-void setAutoLoad(bool flag);
+
+
+//generates unique hash for a texture, takes filename to generate hash to be attached to Texture in Vector
 uint generateID(std::string filename);
+
+
 //access to texture memory via a map, but also with vector based indexing
 std::map<uint,Texture2D>m_Textures;
 std::map<std::string,uint>m_lookup;

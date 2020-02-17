@@ -3,7 +3,7 @@
 //
 
 #include "Input.h"
-#include <assert.h>
+#include "System/Events/Event.h"
 #include "../../Libraries/magicEnum/include/magic_enum.hpp"
 Input &Input::getManager() {
     static Input Instance;
@@ -22,38 +22,38 @@ HandleKeyboardInput();
 }
 
 Input::Input() {
-    totalButtons = magic_enum::enum_count<GamepadButton>();
-    totalKeys = magic_enum::enum_count<KeyboardKey>();
+    m_totalButtons = magic_enum::enum_count<GamepadButton>();
+    m_totalKeys = magic_enum::enum_count<KeyboardKey>();
 
-    Buttons.resize(totalButtons, false);
-    Buttons.resize(totalKeys,false);
+    m_Buttons.resize(m_totalButtons, false);
+    m_Keys.resize(m_totalKeys, false);
 }
 
 void Input::HandleGamePadInput() {
 
     if (IsGamepadAvailable(GAMEPAD_PLAYER1)) {
 
-    for(int i = 0; i < totalButtons; i ++ ) {
+    for(int i = 0; i < m_totalButtons; i ++ ) {
         if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, i))
-            Buttons.at(i) = true;
+            m_Buttons.at(i) = true;
 
 
         if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, i));
-            Buttons.at(i) = false;
+        m_Buttons.at(i) = false;
     }
 
     }
 }
 void Input::HandleKeyboardInput()
 {
-for(int i = 0 ; i < totalKeys; i++)
+for(int i = 0 ; i < m_totalKeys; i++)
 {
     if (IsKeyPressed(i))
-        Keys.at(i) = true;
+        m_Keys.at(i) = true;
 
 
     if (IsKeyReleased( i))
-        Keys.at(i) = false;
+        m_Keys.at(i) = false;
 
 }
 
